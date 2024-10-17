@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Start MongoDB
+mongod --dbpath /app/data/db --bind_ip_all &
+
+# Wait for MongoDB to start
+sleep 5
+
 # Start the Express.js server in the background
 node app.js &
 
