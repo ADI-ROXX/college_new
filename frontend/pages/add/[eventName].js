@@ -228,11 +228,12 @@ useEffect(() => {
   const handleDownloadPDF = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5081/download/${encodeURIComponent(eventName)}`,
+        `http://${process.env.NEXT_PUBLIC_PYTHON_BACKEND_URL}/download/${encodeURIComponent(eventName)}`,
         {
           responseType: 'blob',
         }
       );
+      
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
       link.href = url;

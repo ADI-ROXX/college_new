@@ -116,7 +116,6 @@ def add_images_horizontally(pdf, image_names, uploads_folder, continuation_title
             x += image_width + 5  # Move x for next image, add horizontal spacing
             max_y = max(max_y, y + image_height)
             # Remove the downloaded image file to save space
-            os.remove(image_path)
 
 def download_image(url, uploads_folder):
     try:
