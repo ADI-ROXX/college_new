@@ -1,6 +1,9 @@
 // frontend/pages/add/[eventName].js
 import React, { useState, useEffect, useRef } from 'react'
-import axios, { NEXT_PUBLIC_BACKEND_URL } from '../../utils/axiosInstance'
+import axios, {
+  NEXT_PUBLIC_BACKEND_URL,
+  NEXT_PUBLIC_PYTHON_BACKEND_URL
+} from '../../utils/axiosInstance'
 import { useRouter } from 'next/router'
 
 export default function AddBill() {
@@ -228,9 +231,9 @@ export default function AddBill() {
   const handleDownloadPDF = async () => {
     try {
       const response = await axios.get(
-        `http://${
-          process.env.NEXT_PUBLIC_PYTHON_BACKEND_URL
-        }/download/${encodeURIComponent(eventName)}`,
+        `${NEXT_PUBLIC_PYTHON_BACKEND_URL}/download/${encodeURIComponent(
+          eventName
+        )}`,
         {
           responseType: 'blob'
         }
