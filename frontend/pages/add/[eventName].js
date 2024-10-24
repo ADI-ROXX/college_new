@@ -266,7 +266,7 @@ export default function AddBill() {
       <form onSubmit={handleSubmit} className='mb-6'>
         {/* Bill Name */}
         <div className='mb-4'>
-          <label className='block mb-1'>Name of the Bill</label>
+          <label className='block mb-1 font-bold'>Name of the Bill</label>
           <input
             type='text'
             name='billName'
@@ -279,7 +279,7 @@ export default function AddBill() {
 
         {/* Description */}
         <div className='mb-4'>
-          <label className='block mb-1'>Description</label>
+          <label className='block mb-1 font-bold'>Description</label>
           <textarea
             name='description'
             className='w-full border px-3 py-2'
@@ -291,7 +291,7 @@ export default function AddBill() {
 
         {/* Amount */}
         <div className='mb-4'>
-          <label className='block mb-1'>Amount</label>
+          <label className='block mb-1 font-bold'>Amount</label>
           <input
             type='number'
             name='amount'
@@ -304,7 +304,7 @@ export default function AddBill() {
 
         {/* Image 1 Section */}
         <div className='mb-4'>
-          <label className='block mb-1'>Image 1</label>
+          <label className='block mb-1 font-bold'>Invoice</label>
           {image1Inputs.map((input, index) => (
             <div key={input.id} className='mb-2 flex items-center'>
               <input
@@ -347,7 +347,7 @@ export default function AddBill() {
 
         {/* Image 2 Section */}
         <div className='mb-4'>
-          <label className='block mb-1'>Image 2</label>
+          <label className='block mb-1 font-bold'>Proof of Payment</label>
           {image2Inputs.map((input, index) => (
             <div key={input.id} className='mb-2 flex items-center'>
               <input
@@ -416,7 +416,7 @@ export default function AddBill() {
         className='bg-purple-500 text-white px-4 py-2 rounded mb-4 w-full sm:w-auto'
         onClick={handleDownloadPDF}
       >
-        Print Hello (Download PDF)
+        Download PDF
       </button>
 
       {/* Bills Table */}
@@ -433,12 +433,13 @@ export default function AddBill() {
           </thead>
           <tbody>
             {bills.map((bill, index) => (
-              <tr key={bill._id}>
+              <tr key={bill._id} className={`relative ${bill.isAvailable ? 'bg-green-200' : 'bg-red-200'}`}>
                 <td className='border px-4 py-2'>{index + 1}</td>
                 <td className='border px-4 py-2'>{bill.billName}</td>
                 <td className='border px-4 py-2'>{bill.description}</td>
-                <td className='border px-4 py-2'>{bill.amount}</td>
-                <td className='border px-4 py-2'>
+                <td className='border px-4 py-2 '>{bill.amount}</td>
+                <td className='border px-4 py-2 relative  '>
+                  <div className='flex align-middle pt-2 items-center justify-center'>
                   <button
                     className='bg-blue-500 text-white px-2 py-1 rounded mr-2 mb-2'
                     onClick={() => {
@@ -446,7 +447,7 @@ export default function AddBill() {
                       else alert('No images available')
                     }}
                   >
-                    Image 1
+                    Invoice
                   </button>
                   <button
                     className='bg-blue-500 text-white px-2 py-1 rounded mr-2 mb-2'
@@ -455,7 +456,7 @@ export default function AddBill() {
                       else alert('No images available')
                     }}
                   >
-                    Image 2
+                    Proof of payment
                   </button>
                   <button
                     className='bg-red-500 text-white px-2 py-1 rounded mb-2'
@@ -463,6 +464,7 @@ export default function AddBill() {
                   >
                     Delete
                   </button>
+                  </div>
                 </td>
               </tr>
             ))}
