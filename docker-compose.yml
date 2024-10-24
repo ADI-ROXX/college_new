@@ -7,13 +7,13 @@ services:
       dockerfile: Dockerfile
     container_name: frontend
     ports:
-      - "3000:3000"
+      - '3000:3000'
     depends_on:
       - backend
-    environment:
-      - NEXT_PUBLIC_BACKEND_URL=http://localhost:5080/api
+      - mongodb
     networks:
-      - app-network
+      default:
+      internal:
 
   backend:
     build:
@@ -21,20 +21,30 @@ services:
       dockerfile: Dockerfile
     container_name: backend
     ports:
-      - "5080:5080"
-      - "5081:5081"
+      - '5080:5080'
+      - '5081:5081'
     environment:
-      - MONGODB_URI=mongodb://localhost:27017/collegeEventsDB
-      - PYTHON_SERVER_URL=http://localhost:5081
+      - MONGODB_URI=mongodb://mongodb:27017/collegeEventsDB
+      - PYTHON_SERVER_URL=http://localhost:5081/api
       - PORT=5080
     networks:
-      - app-network
+      default:
+      internal:
     volumes:
       - ./backend/uploads:/app/uploads
-      - mongo_data:/app/data/db
+
+  mongodb:
+    image: mongo:8
+    container_name: mongodb
+    networks:
+      internal:
+    volumes:
+      - mongo_data:/data/db
 
 volumes:
   mongo_data:
 
 networks:
-  app-network:
+  default:
+  internal:
+    internal: true
