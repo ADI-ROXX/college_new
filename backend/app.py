@@ -57,7 +57,8 @@ def download_pdf(event_name):
         print("PDF generated")
         # Save PDF to a BytesIO buffer
         pdf_buffer = BytesIO()
-        pdf.output(pdf_buffer)
+        pdf_out = pdf.output(dest='S').encode('latin1')
+        pdf_buffer.write(pdf_out)
         pdf_buffer.seek(0)
 
         # Send the PDF as a downloadable file
