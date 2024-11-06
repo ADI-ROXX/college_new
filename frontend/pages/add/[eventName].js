@@ -270,7 +270,7 @@ export default function AddBill() {
           <input
             type='text'
             name='billName'
-            className='w-full border px-3 py-2'
+            className='w-full border px-3 py-2 text-black'
             value={form.billName}
             onChange={handleInputChange}
             required
@@ -282,7 +282,7 @@ export default function AddBill() {
           <label className='block mb-1 font-bold'>Description</label>
           <textarea
             name='description'
-            className='w-full border px-3 py-2'
+            className='w-full border px-3 py-2 text-black'
             value={form.description}
             onChange={handleInputChange}
             required
@@ -295,7 +295,7 @@ export default function AddBill() {
           <input
             type='number'
             name='amount'
-            className='w-full border px-3 py-2'
+            className='w-full border px-3 py-2 text-black'
             value={form.amount}
             onChange={handleInputChange}
             required
@@ -405,7 +405,7 @@ export default function AddBill() {
         {/* Submit Button */}
         <button
           type='submit'
-          className='bg-blue-500 text-white px-4 py-2 rounded w-full sm:w-auto'
+          className='bg-blue-500 text-balck px-4 py-2 rounded w-full sm:w-auto'
         >
           Add Bill
         </button>
@@ -413,7 +413,7 @@ export default function AddBill() {
 
       {/* Download PDF Button */}
       <button
-        className='bg-purple-500 text-white px-4 py-2 rounded mb-4 w-full sm:w-auto'
+        className='bg-purple-500 text-balck px-4 py-2 rounded mb-4 w-full sm:w-auto'
         onClick={handleDownloadPDF}
       >
         Download PDF
@@ -441,7 +441,7 @@ export default function AddBill() {
                 <td className='border px-4 py-2 relative  '>
                   <div className='flex align-middle pt-2 items-center justify-center'>
                   <button
-                    className='bg-blue-500 text-white px-2 py-1 rounded mr-2 mb-2'
+                    className='bg-blue-500 text-balck px-2 py-1 rounded mr-2 mb-2'
                     onClick={() => {
                       if (bill.images1.length > 0) openImagesModal(bill.images1)
                       else alert('No images available')
@@ -450,7 +450,7 @@ export default function AddBill() {
                     Invoice
                   </button>
                   <button
-                    className='bg-blue-500 text-white px-2 py-1 rounded mr-2 mb-2'
+                    className='bg-blue-500 text-balck px-2 py-1 rounded mr-2 mb-2'
                     onClick={() => {
                       if (bill.images2.length > 0) openImagesModal(bill.images2)
                       else alert('No images available')
@@ -459,7 +459,7 @@ export default function AddBill() {
                     Proof of payment
                   </button>
                   <button
-                    className='bg-red-500 text-white px-2 py-1 rounded mb-2'
+                    className='bg-red-500 text-balck px-2 py-1 rounded mb-2'
                     onClick={() => handleDelete(bill._id)}
                   >
                     Delete
@@ -485,7 +485,7 @@ export default function AddBill() {
               />
             ))}
             <button
-              className='absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded'
+              className='absolute top-2 right-2 bg-red-500 text-balck px-2 py-1 rounded'
               onClick={() => {
                 setShowImageModal(false)
                 setModalImages([])
@@ -507,7 +507,7 @@ export default function AddBill() {
               className='max-w-full max-h-screen'
             />
             <button
-              className='absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded'
+              className='absolute top-2 right-2 bg-red-500 text-balck px-2 py-1 rounded'
               onClick={() => {
                 setShowPreviewModal(false)
                 setCurrentPreviewImage(null)

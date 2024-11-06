@@ -22,22 +22,22 @@ export default function Login() {
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
       <form className="bg-white p-6 rounded shadow-md" onSubmit={handleLogin}>
-        <h2 className="text-2xl mb-4">Login</h2>
+        <h2 className="text-2xl text-black mb-4">Login</h2>
         <div className="mb-4">
-          <label className="block mb-1">Username</label>
+          <label className="text-black block mb-1">Username</label>
           <input
             type="text"
-            className="w-full border px-3 py-2"
+            className="w-full text-black border px-3 py-2"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-1">Password</label>
+          <label className="text-black block mb-1">Password</label>
           <input
             type="password"
-            className="w-full border px-3 py-2"
+            className="w-full text-black border px-3 py-2"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -45,13 +45,13 @@ export default function Login() {
         </div>
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded"
+          className="w-full bg-blue-500 text-black py-2 rounded"
         >
           Login
         </button>
         <button
           type="button"
-          className="w-full mt-2 bg-green-500 text-white py-2 rounded"
+          className="w-full mt-2 bg-green-500 text-black py-2 rounded"
           onClick={() => router.push('/register')}
         >
           Register
