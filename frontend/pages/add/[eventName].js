@@ -1,7 +1,6 @@
 // frontend/pages/add/[eventName].js
 import React, { useState, useEffect, useRef } from 'react'
 import axios, {
-  NEXT_PUBLIC_BACKEND_URL,
   NEXT_PUBLIC_PYTHON_BACKEND_URL
 } from '../../utils/axiosInstance'
 import { useRouter } from 'next/router'
@@ -230,15 +229,13 @@ export default function AddBill() {
   // Handle PDF download
   const handleDownloadPDF = async () => {
     try {
-      const response = await axios.get(
+      const response = await fetch(
         `${NEXT_PUBLIC_PYTHON_BACKEND_URL}/download/${encodeURIComponent(
           eventName
-        )}`,
-        {
-          responseType: 'blob'
-        }
+        )}`
       )
-      const url = window.URL.createObjectURL(new Blob([response.data]))
+      const blob = await response.blob()
+      const url = window.URL.createObjectURL(blob)
       const link = document.createElement('a')
       link.href = url
       link.setAttribute('download', `${eventName}_bills.pdf`)
@@ -253,8 +250,7 @@ export default function AddBill() {
   // Open image modal for bills
   const openImagesModal = (images) => {
     const imageUrls = images.map(
-      (imageName) =>
-        `${NEXT_PUBLIC_BACKEND_URL.replace('/api', '')}/getImage/${imageName}`
+      (imageName) => `${NEXT_PUBLIC_PYTHON_BACKEND_URL}/getImage/${imageName}`
     )
     setModalImages(imageUrls)
     setShowImageModal(true)
@@ -433,7 +429,12 @@ export default function AddBill() {
           </thead>
           <tbody>
             {bills.map((bill, index) => (
-              <tr key={bill._id} className={`relative ${bill.isAvailable ? 'bg-green-200' : 'bg-red-200'}`}>
+              <tr
+                key={bill._id}
+                className={`relative ${
+                  bill.isAvailable ? 'bg-green-200' : 'bg-red-200'
+                }`}
+              >
                 <td className='border px-4 py-2'>{index + 1}</td>
                 <td className='border px-4 py-2'>{bill.billName}</td>
                 <td className='border px-4 py-2'>{bill.description}</td>

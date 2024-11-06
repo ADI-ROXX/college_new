@@ -5,9 +5,9 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: frontend
+    container_name: bills-frontend
     ports:
-      - '3000:3000'
+      - '8071:3000'
     depends_on:
       - backend
       - mongodb
@@ -19,14 +19,17 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: backend
+    container_name: bills-backend
     ports:
-      - '5080:5080'
-      - '5081:5081'
+      - '8072:5080'
+      - '8073:5081'
+    depends_on:
+      - mongodb
     environment:
-      - MONGODB_URI=mongodb://mongodb:27017/collegeEventsDB
-      - PYTHON_SERVER_URL=http://localhost:5081/api
+      - MONGODB_URI=mongodb://bills-mongodb:27017/collegeEventsDB
+      - PYTHON_SERVER_URL=http://localhost:8073/api
       - PORT=5080
+      - JWT_SECRET=12idawd88j2be2h71h7q2he27qq2etq2h1e
     networks:
       default:
       internal:
@@ -35,14 +38,11 @@ services:
 
   mongodb:
     image: mongo:8
-    container_name: mongodb
+    container_name: bills-mongodb
     networks:
       internal:
     volumes:
-      - mongo_data:/data/db
-
-volumes:
-  mongo_data:
+      - ../db:/data/db
 
 networks:
   default:

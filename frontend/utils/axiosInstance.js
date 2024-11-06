@@ -1,7 +1,7 @@
 // frontend/utils/axiosInstance.js
 import axios from 'axios'
-export const NEXT_PUBLIC_BACKEND_URL = 'http://localhost:5080/api'
-export const NEXT_PUBLIC_PYTHON_BACKEND_URL = 'http://localhost:5081'
+export const NEXT_PUBLIC_BACKEND_URL = '/api'
+export const NEXT_PUBLIC_PYTHON_BACKEND_URL = '/py-api'
 const axiosInstance = axios.create({
   baseURL: NEXT_PUBLIC_BACKEND_URL,
   headers: {
